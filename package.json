@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "firebase": "^7.19.1",
     "next": "9.5.1",
     "react": "16.13.1",
     "react-dom": "16.13.1"
