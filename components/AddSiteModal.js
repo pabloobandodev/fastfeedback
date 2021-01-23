@@ -1,5 +1,5 @@
 import { useForm } from 'react-hook-form'
-import useSWR, { mutate } from 'swr'
+import { mutate } from 'swr'
 import {
   Modal,
   ModalOverlay,
@@ -18,13 +18,11 @@ import {
 
 import { createSite } from '@/lib/db'
 import { useAuth } from '@/lib/auth'
-import fetcher from '@/utils/fetcher'
 
 const AddSiteModal = ({ children }) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const toast = useToast()
   const auth = useAuth()
-  const { data } = useSWR('/api/sites', fetcher)
   const { handleSubmit, register } = useForm()
 
   const onCreateSite = ({ name, url }) => {
@@ -44,7 +42,7 @@ const AddSiteModal = ({ children }) => {
       isClosable: true,
     })
     mutate(
-      '/api/sites',
+      ['/api/sites', auth.user.token],
       async (data) => {
         return { sites: [...data.sites, newSite] }
       },
