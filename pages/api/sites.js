@@ -1,5 +1,5 @@
 import { auth } from '@/lib/firebase-admin'
-import { getAllSites, getUserSites } from '@/lib/db-admin'
+import { getUserSites } from '@/lib/db-admin'
 
 export default async (req, res) => {
   try {
